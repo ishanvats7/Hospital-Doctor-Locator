@@ -1,0 +1,9 @@
+.star-input {
+  font-size: 1.8rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star-input .star.filled {
+  color: #f5c518;
+}

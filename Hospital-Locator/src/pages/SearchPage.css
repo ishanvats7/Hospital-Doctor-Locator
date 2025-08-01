@@ -1,0 +1,78 @@
+/* src/pages/SearchPage.css */
+.banner {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-filters input,
+.search-filters select {
+  padding: 10px;
+  font-size: 16px;
+  flex: 1 1 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+.doctor-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+}
+
+.doctor-card h3 {
+  margin: 0;
+  color: #0077cc;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.search-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.2s;
+}
+
+.search-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.search-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}

@@ -1,0 +1,104 @@
+.hospital-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #fff;
+}
+
+.hospital-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hospital-header-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: #555;
+}
+
+.hospital-info {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.map-container {
+  margin-top: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+/* .doctor-list {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.doctor-card {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+} */
+
+.doctor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.doctor-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  align-items: flex-start;
+  background-color: #fafafa;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.doctor-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.doctor-info {
+  flex-grow: 1;
+}
+
+.doctor-card h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.doctor-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.back-link {
+  margin-top: 2rem;
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
