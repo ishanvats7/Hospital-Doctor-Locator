@@ -21,6 +21,8 @@ app.use(cors());
 app.use(express.json());
 
 //registrating routes in application, these routes contains api endpoints
+// example- searchRoutes contains search api's defined in ./routes/search path. It will be called with base path + "/api/search" + whatever api endpoints defined in search route path
+// /api/search, /api/hospital these are defined to be appended in base path (localhost:5000) and then respective api endpoint path as defined in respective files
 app.use("/api/search", searchRoutes);
 app.use("/api/hospital", hospitalRoutes);
 app.use("/api/reviews", require("./routes/review"));
