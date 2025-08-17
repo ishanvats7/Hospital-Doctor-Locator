@@ -5,8 +5,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 // dotenv package helps to load environment variables from a .env file into the process.env object, making them accessible within the application's runtime.
 require("dotenv").config();
+// loading api endpoints routing paths
 const searchRoutes = require("./routes/search");
 const hospitalRoutes = require("./routes/hospital");
+const loginRegistrationRoutes = require("./routes/userAuth");
 
 //below line initializes express application
 const app = express();
@@ -26,6 +28,7 @@ app.use(express.json());
 app.use("/api/search", searchRoutes);
 app.use("/api/hospital", hospitalRoutes);
 app.use("/api/reviews", require("./routes/review"));
+app.use("/api/auth", loginRegistrationRoutes);
 // this is just a health check endpoint "/" means http://locahost:port/ will print below response if application runs properly
 app.get("/", (req, res) => res.send("Hospital Locator API is running"));
 
