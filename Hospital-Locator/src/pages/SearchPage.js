@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext  } from "react";
 import "./SearchPage.css"; // <-- Import styles
+import { AuthContext } from "./context/AuthContext"; 
 import { useNavigate } from "react-router-dom";
 
 function SearchPage() {
    const navigate = useNavigate();
+   const { user, logout } = useContext(AuthContext); // get user and logout
   const [currentLocation, setCurrentLocation] = useState({
     city: "Detecting...",
     pincode: "",
@@ -18,20 +20,8 @@ function SearchPage() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [username, setUsername] = useState("GuestUser");
 
   useEffect(() => {
-    // Fetch username from localStorage
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setUsername(parsedUser.name || "GuestUser");
-      } catch {
-        setUsername("GuestUser");
-      }
-    }
-
     if (!navigator.geolocation) {
       setCurrentLocation({ city: "Geolocation not supported", pincode: "" });
       return;
@@ -122,7 +112,7 @@ function SearchPage() {
 
   const handleLoginClick = () => navigate("/login");
   const handleRegisterClick = () => navigate("/register");
-
+  const username = user ? user.name : "Guest";
 
   return (
     <div className="container">
@@ -131,10 +121,12 @@ function SearchPage() {
         <img src="/banner.jpg" alt="Banner" className="banner" />
         <div className="user-greeting">Hello, {username}</div>
         <div className="banner-buttons-right">
-          <button className="auth-btn login-btn" onClick={handleLoginClick}>Login
+          {user?(<button className="auth-btn logout-btn" onClick={logout}>Logout
+          </button>):(<><button className="auth-btn login-btn" onClick={handleLoginClick}>Login
+          </button><button className="auth-btn register-btn" onClick={handleRegisterClick}>Register
           </button>
-          <button className="auth-btn register-btn" onClick={handleRegisterClick}>Register
-          </button>
+          </>
+          )}
           </div>
           </div>
       <h1>Find Doctors and Hospitals</h1>
