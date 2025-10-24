@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext  } from "react";
 import "./SearchPage.css"; // <-- Import styles
+import { AuthContext } from "./context/AuthContext"; 
+import { useNavigate } from "react-router-dom";
 
 function SearchPage() {
+   const navigate = useNavigate();
+   const { user, logout } = useContext(AuthContext); // get user and logout
   const [currentLocation, setCurrentLocation] = useState({
     city: "Detecting...",
     pincode: "",
@@ -62,6 +66,8 @@ function SearchPage() {
     );
   }, []);
 
+  
+
   const fetchResults = async (reset = false) => {
     if (loading) return;
     setLoading(true);
@@ -104,10 +110,25 @@ function SearchPage() {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
+  const handleLoginClick = () => navigate("/login");
+  const handleRegisterClick = () => navigate("/register");
+  const username = user ? user.name : "Guest";
+
   return (
     <div className="container">
-      <img src="/banner.jpg" alt="Banner" className="banner" />
-
+      {/* Banner with right-side buttons */}
+      <div className="banner-container">
+        <img src="/banner.jpg" alt="Banner" className="banner" />
+        <div className="user-greeting">Hello, {username}</div>
+        <div className="banner-buttons-right">
+          {user?(<button className="auth-btn logout-btn" onClick={logout}>Logout
+          </button>):(<><button className="auth-btn login-btn" onClick={handleLoginClick}>Login
+          </button><button className="auth-btn register-btn" onClick={handleRegisterClick}>Register
+          </button>
+          </>
+          )}
+          </div>
+          </div>
       <h1>Find Doctors and Hospitals</h1>
       <p>
         Your location:{" "}
