@@ -1,26 +1,35 @@
-import React, { useEffect, useState,useContext  } from "react";
-import "./SearchPage.css"; // <-- Import styles
-import { AuthContext } from "./context/AuthContext"; 
+import React, { useEffect, useState, useContext } from "react";
+import "./SearchPage.css";
+import { AuthContext } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function SearchPage() {
-   const navigate = useNavigate();
-   const { user, logout } = useContext(AuthContext); // get user and logout
+  const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
+
   const [currentLocation, setCurrentLocation] = useState({
     city: "Detecting...",
     pincode: "",
   });
+
   const [filters, setFilters] = useState({
     name: "",
     pincode: "",
     specialization: "",
     city: "",
   });
+
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
+  // --- AI Assistant States ---
+  const [symptoms, setSymptoms] = useState("");
+  const [aiResult, setAiResult] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
+
+  // Get current city using geolocation
   useEffect(() => {
     if (!navigator.geolocation) {
       setCurrentLocation({ city: "Geolocation not supported", pincode: "" });
@@ -47,8 +56,6 @@ function SearchPage() {
           const pincode = address.postcode || "";
 
           setCurrentLocation({ city, pincode });
-
-          // Optional: auto-fill the pincode filter
           setFilters((prev) => ({ ...prev, city }));
           fetchResults(true);
         } catch (err) {
@@ -66,8 +73,7 @@ function SearchPage() {
     );
   }, []);
 
-  
-
+  // Fetch hospitals/doctors
   const fetchResults = async (reset = false) => {
     if (loading) return;
     setLoading(true);
@@ -101,11 +107,6 @@ function SearchPage() {
     }
   };
 
-  // if on each letter change we want search -api call
-  /* useEffect(() => {
-    fetchResults(true);
-  }, [filters]); */
-
   const handleChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
@@ -114,21 +115,86 @@ function SearchPage() {
   const handleRegisterClick = () => navigate("/register");
   const username = user ? user.name : "Guest";
 
+  // --- Ask AI Function ---
+  const handleAskAI = async () => {
+    if (!symptoms.trim()) return alert("Please enter symptoms first!");
+    setAiLoading(true);
+    setAiResult("");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/ai/ask", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ query: symptoms }),
+});
+
+      const data = await res.json();
+      const specialization = data.specialization || "No suggestion found.";
+      setAiResult(specialization);
+
+      // Optional: auto-fill specialization and search
+      setFilters((prev) => ({
+        ...prev,
+        specialization: specialization.toLowerCase(),
+      }));
+      fetchResults(true);
+    } catch (err) {
+      console.error(err);
+      setAiResult("Error fetching AI suggestion.");
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
   return (
     <div className="container">
       {/* Banner with right-side buttons */}
       <div className="banner-container">
         <img src="/banner.jpg" alt="Banner" className="banner" />
         <div className="user-greeting">Hello, {username}</div>
+
         <div className="banner-buttons-right">
-          {user?(<button className="auth-btn logout-btn" onClick={logout}>Logout
-          </button>):(<><button className="auth-btn login-btn" onClick={handleLoginClick}>Login
-          </button><button className="auth-btn register-btn" onClick={handleRegisterClick}>Register
-          </button>
-          </>
+          {user ? (
+            <button className="auth-btn logout-btn" onClick={logout}>
+              Logout
+            </button>
+          ) : (
+            <>
+              <button className="auth-btn login-btn" onClick={handleLoginClick}>
+                Login
+              </button>
+              <button
+                className="auth-btn register-btn"
+                onClick={handleRegisterClick}
+              >
+                Register
+              </button>
+            </>
           )}
-          </div>
-          </div>
+        </div>
+
+        {/* --- AI Assistant Box --- */}
+        <div className="ai-box">
+          <h3>🧠 Ask AI</h3>
+          <p className="ai-subtext">Find out which specialist you should visit!</p>
+          <input
+            type="text"
+            placeholder="Enter symptoms (e.g. fever, rashes)"
+            value={symptoms}
+            onChange={(e) => setSymptoms(e.target.value)}
+          />
+          <button onClick={handleAskAI} disabled={aiLoading}>
+            {aiLoading ? "Thinking..." : "Ask AI"}
+          </button>
+
+          {aiResult && (
+            <div className="ai-result">
+              <strong>Suggested Specialist:</strong> {aiResult}
+            </div>
+          )}
+        </div>
+      </div>
+
       <h1>Find Doctors and Hospitals</h1>
       <p>
         Your location:{" "}
@@ -162,6 +228,17 @@ function SearchPage() {
           <option value="cardiology">Cardiology</option>
           <option value="dermatology">Dermatology</option>
           <option value="pediatrics">Pediatrics</option>
+          <option value="neurology">Neurology</option>
+          <option value="orthopedics">Orthopedics</option>
+          <option value="gynecology">Gynecology</option>
+          <option value="oncology">Oncology</option>
+          <option value="psychiatry">Psychiatry</option>
+          <option value="radiology">Radiology</option>
+          <option value="gastroenterology">Gastroenterology</option>
+          <option value="endocrinology">Endocrinology</option>
+          <option value="ophthalmology">Ophthalmology</option>
+          <option value="General Practice">Ophthalmology</option>
+          <option value="Internal Medicine">Ophthalmology</option>
         </select>
         <button onClick={() => fetchResults(true)}>Search</button>
       </div>

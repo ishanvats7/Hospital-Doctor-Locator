@@ -12,9 +12,9 @@ async function seed() {
 
   console.log("Cleared old data.");
 
-  // --- Insert Hospitals & Clinics ---
+  // --- Insert Hospitals ---
   const hospitals = await Hospital.insertMany([
-    // LUCKNOW
+    // ---------------------- LUCKNOW ----------------------
     {
       name: "Sahara Hospital",
       type: "hospital",
@@ -48,6 +48,22 @@ async function seed() {
       location: { type: "Point", coordinates: [80.9132, 26.869] },
     },
     {
+      name: "Drishti Eye Centre",
+      type: "hospital",
+      city: "Lucknow",
+      pincode: "226018",
+      fullAddress: "Aliganj, Lucknow, Uttar Pradesh",
+      location: { type: "Point", coordinates: [80.9428, 26.8871] },
+    },
+    {
+      name: "Apollo General and Internal Medicine Hospital",
+      type: "hospital",
+      city: "Lucknow",
+      pincode: "226016",
+      fullAddress: "Indira Nagar, Lucknow, Uttar Pradesh",
+      location: { type: "Point", coordinates: [80.9811, 26.8795] },
+    },
+    {
       name: "Smile Dental Clinic",
       type: "clinic",
       city: "Lucknow",
@@ -56,7 +72,7 @@ async function seed() {
       location: { type: "Point", coordinates: [80.9462, 26.8467] },
     },
 
-    // GORAKHPUR
+    // ---------------------- GORAKHPUR ----------------------
     {
       name: "BRD Medical College and Hospital",
       type: "hospital",
@@ -90,18 +106,60 @@ async function seed() {
       location: { type: "Point", coordinates: [83.3982, 26.7633] },
     },
     {
-      name: "Smile Dental Care",
-      type: "clinic",
+      name: "Netra Jyoti Eye Hospital",
+      type: "hospital",
       city: "Gorakhpur",
-      pincode: "273001",
+      pincode: "273004",
+      fullAddress: "Asuran Chowk, Gorakhpur, Uttar Pradesh",
+      location: { type: "Point", coordinates: [83.371, 26.7785] },
+    },
+    {
+      name: "Shanti General Hospital",
+      type: "hospital",
+      city: "Gorakhpur",
+      pincode: "273007",
       fullAddress: "Golghar, Gorakhpur, Uttar Pradesh",
       location: { type: "Point", coordinates: [83.3678, 26.7615] },
+    },
+
+    // ---------------------- VARANASI ----------------------
+    {
+      name: "Heritage Hospital",
+      type: "hospital",
+      city: "Varanasi",
+      pincode: "221002",
+      fullAddress: "Lanka, Varanasi, Uttar Pradesh",
+      location: { type: "Point", coordinates: [82.996, 25.2825] },
+    },
+    {
+      name: "SS Hospital, BHU",
+      type: "hospital",
+      city: "Varanasi",
+      pincode: "221005",
+      fullAddress: "Banaras Hindu University, Varanasi, Uttar Pradesh",
+      location: { type: "Point", coordinates: [82.994, 25.2677] },
+    },
+    {
+      name: "Anand Eye Hospital",
+      type: "hospital",
+      city: "Varanasi",
+      pincode: "221010",
+      fullAddress: "Sigra, Varanasi, Uttar Pradesh",
+      location: { type: "Point", coordinates: [82.987, 25.321] },
+    },
+    {
+      name: "Sparsh Dental & Skin Clinic",
+      type: "clinic",
+      city: "Varanasi",
+      pincode: "221001",
+      fullAddress: "Godowlia, Varanasi, Uttar Pradesh",
+      location: { type: "Point", coordinates: [82.973, 25.316] },
     },
   ]);
 
   // --- Insert Doctors ---
   const doctors = [
-    // --- LUCKNOW ---
+    // ---------------------- LUCKNOW ----------------------
     {
       name: "Dr. Anjali Verma",
       specialization: "Cardiology",
@@ -112,8 +170,7 @@ async function seed() {
       rating: 4.8,
       reviewCount: 125,
       timings: { morning: "10AM - 1PM", evening: "6PM - 9PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Anjali+Verma&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Anjali+Verma&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Rajeev Singh",
@@ -125,8 +182,7 @@ async function seed() {
       rating: 4.5,
       reviewCount: 93,
       timings: { morning: "9AM - 12PM", evening: "5PM - 8PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Rajeev+Singh&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Rajeev+Singh&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Swati Tiwari",
@@ -138,8 +194,19 @@ async function seed() {
       rating: 4.7,
       reviewCount: 110,
       timings: { morning: "11AM - 2PM", evening: "5PM - 7PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Swati+Tiwari&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Swati+Tiwari&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Ravi Bansal",
+      specialization: "Neurology",
+      pincode: "226010",
+      fullAddress: "Vibhuti Khand, Gomti Nagar",
+      location: { type: "Point", coordinates: [81.022, 26.8604] },
+      hospitalId: hospitals[1]._id,
+      rating: 4.6,
+      reviewCount: 98,
+      timings: { morning: "9AM - 1PM", evening: "5PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Ravi+Bansal&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Pooja Agarwal",
@@ -151,8 +218,19 @@ async function seed() {
       rating: 4.9,
       reviewCount: 132,
       timings: { morning: "9AM - 12PM", evening: "6PM - 9PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Pooja+Agarwal&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Pooja+Agarwal&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Alok Pandey",
+      specialization: "Oncology",
+      pincode: "226014",
+      fullAddress: "Amar Shaheed Path, Lucknow",
+      location: { type: "Point", coordinates: [81.0039, 26.8234] },
+      hospitalId: hospitals[2]._id,
+      rating: 4.7,
+      reviewCount: 117,
+      timings: { morning: "10AM - 2PM", evening: "5PM - 7PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Alok+Pandey&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Neha Srivastava",
@@ -164,8 +242,43 @@ async function seed() {
       rating: 4.6,
       reviewCount: 101,
       timings: { morning: "10AM - 2PM", evening: "5PM - 7PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Neha+Srivastava&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Neha+Srivastava&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Rohit Sharma",
+      specialization: "Internal Medicine",
+      pincode: "226003",
+      fullAddress: "Chowk, Lucknow",
+      location: { type: "Point", coordinates: [80.9132, 26.869] },
+      hospitalId: hospitals[3]._id,
+      rating: 4.7,
+      reviewCount: 111,
+      timings: { morning: "9AM - 1PM", evening: "6PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Rohit+Sharma&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Anurag Saxena",
+      specialization: "Ophthalmology",
+      pincode: "226018",
+      fullAddress: "Aliganj, Lucknow",
+      location: { type: "Point", coordinates: [80.9428, 26.8871] },
+      hospitalId: hospitals[4]._id,
+      rating: 4.8,
+      reviewCount: 104,
+      timings: { morning: "9AM - 1PM", evening: "5PM - 7PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Anurag+Saxena&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Kavita Mishra",
+      specialization: "General Practice",
+      pincode: "226016",
+      fullAddress: "Indira Nagar, Lucknow",
+      location: { type: "Point", coordinates: [80.9811, 26.8795] },
+      hospitalId: hospitals[5]._id,
+      rating: 4.5,
+      reviewCount: 95,
+      timings: { morning: "10AM - 1PM", evening: "6PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Kavita+Mishra&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Niharika Jain",
@@ -173,27 +286,37 @@ async function seed() {
       pincode: "226001",
       fullAddress: "Hazratganj, Lucknow",
       location: { type: "Point", coordinates: [80.9462, 26.8467] },
-      hospitalId: hospitals[4]._id,
+      hospitalId: hospitals[6]._id,
       rating: 4.7,
       reviewCount: 108,
       timings: { morning: "10AM - 1PM", evening: "5PM - 7PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Niharika+Jain&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Niharika+Jain&background=0D8ABC&color=fff&rounded=true",
     },
 
-    // --- GORAKHPUR ---
+    // ---------------------- GORAKHPUR ----------------------
     {
       name: "Dr. Rakesh Kumar",
       specialization: "Pediatrics",
       pincode: "273013",
       fullAddress: "Medical College Road, Gorakhpur",
       location: { type: "Point", coordinates: [83.3771, 26.7606] },
-      hospitalId: hospitals[5]._id,
+      hospitalId: hospitals[7]._id,
       rating: 4.8,
       reviewCount: 98,
       timings: { morning: "9AM - 12PM", evening: "5PM - 8PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Rakesh+Kumar&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Rakesh+Kumar&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Sunita Mishra",
+      specialization: "Internal Medicine",
+      pincode: "273013",
+      fullAddress: "Medical College Road, Gorakhpur",
+      location: { type: "Point", coordinates: [83.3771, 26.7606] },
+      hospitalId: hospitals[7]._id,
+      rating: 4.6,
+      reviewCount: 88,
+      timings: { morning: "10AM - 2PM", evening: "6PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Sunita+Mishra&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Priya Shukla",
@@ -201,12 +324,11 @@ async function seed() {
       pincode: "273001",
       fullAddress: "Civil Lines, Gorakhpur",
       location: { type: "Point", coordinates: [83.3666, 26.7636] },
-      hospitalId: hospitals[6]._id,
+      hospitalId: hospitals[8]._id,
       rating: 4.7,
       reviewCount: 112,
       timings: { morning: "10AM - 1PM", evening: "6PM - 8PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Priya+Shukla&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Priya+Shukla&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Amit Srivastava",
@@ -214,12 +336,11 @@ async function seed() {
       pincode: "273015",
       fullAddress: "Transport Nagar, Gorakhpur",
       location: { type: "Point", coordinates: [83.3955, 26.7521] },
-      hospitalId: hospitals[7]._id,
+      hospitalId: hospitals[9]._id,
       rating: 4.9,
       reviewCount: 140,
       timings: { morning: "10AM - 1PM", evening: "5PM - 8PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Amit+Srivastava&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Amit+Srivastava&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Sneha Rai",
@@ -227,30 +348,115 @@ async function seed() {
       pincode: "273008",
       fullAddress: "Basharatpur, Gorakhpur",
       location: { type: "Point", coordinates: [83.3982, 26.7633] },
-      hospitalId: hospitals[8]._id,
+      hospitalId: hospitals[10]._id,
       rating: 4.5,
       reviewCount: 89,
       timings: { morning: "11AM - 2PM", evening: "6PM - 8PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Sneha+Rai&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Sneha+Rai&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. A.K. Verma",
+      specialization: "Ophthalmology",
+      pincode: "273004",
+      fullAddress: "Asuran Chowk, Gorakhpur",
+      location: { type: "Point", coordinates: [83.371, 26.7785] },
+      hospitalId: hospitals[11]._id,
+      rating: 4.7,
+      reviewCount: 92,
+      timings: { morning: "10AM - 1PM", evening: "6PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=A+K+Verma&background=0D8ABC&color=fff&rounded=true",
     },
     {
       name: "Dr. Ankit Gupta",
-      specialization: "Dentistry",
-      pincode: "273001",
+      specialization: "General Practice",
+      pincode: "273007",
       fullAddress: "Golghar, Gorakhpur",
       location: { type: "Point", coordinates: [83.3678, 26.7615] },
-      hospitalId: hospitals[9]._id,
+      hospitalId: hospitals[12]._id,
       rating: 4.6,
       reviewCount: 105,
       timings: { morning: "10AM - 1PM", evening: "5PM - 7PM" },
-      photoUrl:
-        "https://ui-avatars.com/api/?name=Ankit+Gupta&background=0D8ABC&color=fff&rounded=true",
+      photoUrl: "https://ui-avatars.com/api/?name=Ankit+Gupta&background=0D8ABC&color=fff&rounded=true",
+    },
+
+    // ---------------------- VARANASI ----------------------
+    {
+      name: "Dr. Meena Sharma",
+      specialization: "Cardiology",
+      pincode: "221002",
+      fullAddress: "Lanka, Varanasi",
+      location: { type: "Point", coordinates: [82.996, 25.2825] },
+      hospitalId: hospitals[13]._id,
+      rating: 4.8,
+      reviewCount: 120,
+      timings: { morning: "9AM - 1PM", evening: "6PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Meena+Sharma&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Rahul Tripathi",
+      specialization: "Orthopedics",
+      pincode: "221002",
+      fullAddress: "Lanka, Varanasi",
+      location: { type: "Point", coordinates: [82.996, 25.2825] },
+      hospitalId: hospitals[13]._id,
+      rating: 4.6,
+      reviewCount: 99,
+      timings: { morning: "10AM - 2PM", evening: "5PM - 7PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Rahul+Tripathi&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Seema Singh",
+      specialization: "Internal Medicine",
+      pincode: "221005",
+      fullAddress: "BHU, Varanasi",
+      location: { type: "Point", coordinates: [82.994, 25.2677] },
+      hospitalId: hospitals[14]._id,
+      rating: 4.7,
+      reviewCount: 102,
+      timings: { morning: "10AM - 1PM", evening: "6PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Seema+Singh&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Manoj Patel",
+      specialization: "Neurology",
+      pincode: "221005",
+      fullAddress: "BHU, Varanasi",
+      location: { type: "Point", coordinates: [82.994, 25.2677] },
+      hospitalId: hospitals[14]._id,
+      rating: 4.8,
+      reviewCount: 130,
+      timings: { morning: "9AM - 12PM", evening: "5PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Manoj+Patel&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Ritu Pandey",
+      specialization: "Ophthalmology",
+      pincode: "221010",
+      fullAddress: "Sigra, Varanasi",
+      location: { type: "Point", coordinates: [82.987, 25.321] },
+      hospitalId: hospitals[15]._id,
+      rating: 4.9,
+      reviewCount: 141,
+      timings: { morning: "10AM - 2PM", evening: "6PM - 8PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Ritu+Pandey&background=0D8ABC&color=fff&rounded=true",
+    },
+    {
+      name: "Dr. Aisha Khan",
+      specialization: "Dermatology",
+      pincode: "221001",
+      fullAddress: "Godowlia, Varanasi",
+      location: { type: "Point", coordinates: [82.973, 25.316] },
+      hospitalId: hospitals[16]._id,
+      rating: 4.6,
+      reviewCount: 92,
+      timings: { morning: "10AM - 1PM", evening: "5PM - 7PM" },
+      photoUrl: "https://ui-avatars.com/api/?name=Aisha+Khan&background=0D8ABC&color=fff&rounded=true",
     },
   ];
 
   await Doctor.insertMany(doctors);
-  console.log("Seed data for Lucknow and Gorakhpur inserted successfully.");
+
+  console.log("Seed data for Lucknow, Gorakhpur, and Varanasi inserted successfully.");
   process.exit();
 }
 
