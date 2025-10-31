@@ -14,10 +14,12 @@ export function AuthProvider({ children }) {
   }, [token]);
 
   const login = (userData, jwtToken) => {
-    setUser(userData);
-    setToken(jwtToken);
-    localStorage.setItem("token", jwtToken);
-    localStorage.setItem("user", JSON.stringify(userData));
+    if(userData && jwtToken){
+      setUser(userData);
+      setToken(jwtToken);
+      localStorage.setItem("token", jwtToken);
+      localStorage.setItem("user", JSON.stringify(userData));
+    }
   };
 
   const logout = () => {
