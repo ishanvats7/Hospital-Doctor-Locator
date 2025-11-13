@@ -2,6 +2,38 @@ import React, { useEffect, useState, useContext } from "react";
 import "./SearchPage.css";
 import { AuthContext } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
+
+const bannerImages = [
+  {
+    url: "/find-doctor.png",
+    caption: "Find the right doctor for your needs",
+  },
+  {
+    url: "/hospitals.png",
+    caption: "Trusted clinics and hospitals in your city",
+  },
+  {
+    url: "/banner.jpg",
+    caption: "Get recommendation on the basis of your symptoms",
+  },
+];
+
+const bannerSettings = {
+  dots: true,
+  infinite: true,
+  speed: 800,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  arrows: false,
+  pauseOnHover: false,
+  cssEase: "ease-in-out",
+};
 
 function SearchPage() {
   const navigate = useNavigate();
@@ -57,7 +89,6 @@ function SearchPage() {
 
           setCurrentLocation({ city, pincode });
           setFilters((prev) => ({ ...prev, city }));
-          fetchResults(true);
         } catch (err) {
           setCurrentLocation({
             city: "Unable to fetch location",
@@ -72,6 +103,12 @@ function SearchPage() {
         })
     );
   }, []);
+
+  useEffect(() => {
+    if (filters.city && filters.city !== "Detecting...") {
+      fetchResults(true);
+    }
+  }, [filters.city]);
 
   // Fetch hospitals/doctors
   const fetchResults = async (reset = false) => {
@@ -123,10 +160,10 @@ function SearchPage() {
 
     try {
       const res = await fetch("http://localhost:5000/api/ai/ask", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ query: symptoms }),
-});
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: symptoms }),
+      });
 
       const data = await res.json();
       const specialization = data.specialization || "No suggestion found.";
@@ -150,7 +187,28 @@ function SearchPage() {
     <div className="container">
       {/* Banner with right-side buttons */}
       <div className="banner-container">
-        <img src="/banner.jpg" alt="Banner" className="banner" />
+        <div className="banner-container">
+          <Slider {...bannerSettings}>
+            {bannerImages.map((img, index) => (
+              <div key={index} className="relative">
+                <img
+                  src={img.url}
+                  alt={`banner-${index}`}
+                  className="w-full h-[350px] object-cover rounded-xl shadow-md"
+                />
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="banner-caption"
+                >
+                  {img.caption}
+                </motion.div>
+              </div>
+            ))}
+          </Slider>
+        </div>
+        {/* <img src="/banner.jpg" alt="Banner" className="banner" /> */}
         <div className="user-greeting">Hello, {username}</div>
 
         <div className="banner-buttons-right">
@@ -245,21 +303,33 @@ function SearchPage() {
 
       <div style={{ marginTop: "2rem" }}>
         {results.map((item) => (
+
           <div key={item._id} className="search-card">
-            <a href={`/hospital/${item._id}`} className="search-link">
-              <h3>{item.name}</h3>
-            </a>
-            <p>
-              <strong>Type:</strong> {item.type || "hospital"}
-            </p>
-            <p>
-              <strong>Pincode:</strong> {item.pincode}
-            </p>
-            {item.fullAddress && (
-              <p>
-                <strong>Address:</strong> {item.fullAddress}
-              </p>
+            {item.imageUrl && (
+              <img src={item.imageUrl}
+                alt={item.name}
+                className="result-image"
+              />
             )}
+            <div> <a href={`/hospital/${item._id}`} className="search-link">
+              <h3 className="hospital-name">{item.name}</h3>
+            </a>
+              <button
+                className="book-btn"
+                onClick={() => navigate(`/hospital/${item._id}`)}
+              >
+                Book Now
+              </button>
+
+              <p><strong>Type:</strong> {item.type || "hospital"}</p>
+              <p><strong>Pincode:</strong> {item.pincode}</p>
+              {item.fullAddress && <p><strong>Address:</strong> {item.fullAddress}</p>}
+              {item.description && (
+                <p className="hospital-description">
+                  {item.description}
+                </p>
+              )}
+            </div>
           </div>
         ))}
         {loading && <p>Loading...</p>}
@@ -268,6 +338,7 @@ function SearchPage() {
           <button onClick={() => fetchResults()}>Load More</button>
         )}
       </div>
+
     </div>
   );
 }

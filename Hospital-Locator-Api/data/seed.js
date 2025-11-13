@@ -16,12 +16,14 @@ async function seed() {
   const hospitals = await Hospital.insertMany([
     // ---------------------- LUCKNOW ----------------------
     {
-      name: "Sahara Hospital",
+      name: "Max Super Speciality Hospital",
       type: "hospital",
       city: "Lucknow",
       pincode: "226010",
       fullAddress: "Viraj Khand, Gomti Nagar, Lucknow, Uttar Pradesh",
       location: { type: "Point", coordinates: [81.0212, 26.8663] },
+      imageUrl: "https://lh3.googleusercontent.com/p/AF1QipNQbs04ST07T0K_wZa87bFzIuDB6XWEf6sOxXZD=s1360-w1360-h1020-rw",
+      description: "Max Super Speciality Hospital in Lucknow offers advanced medical and surgical care with state-of-the-art facilities in cardiology, neurology, and oncology.",
     },
     {
       name: "Dr. Ram Manohar Lohia Institute of Medical Sciences",
@@ -30,6 +32,8 @@ async function seed() {
       pincode: "226010",
       fullAddress: "Vibhuti Khand, Gomti Nagar, Lucknow, Uttar Pradesh",
       location: { type: "Point", coordinates: [81.022, 26.8604] },
+      imageUrl: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxbb9x9eCbwhcH4IAMSz5EK_zO1mWuDXYxSmSWbZpe0X9io7F18D4P5EnAoyUQVUVOEOuHhbxTk5WB1UgQbzRMfralzyg0q0Chc8AXtDL30KbHIQU5Lisy8Lo9ohD9e6rycE0q1=s1360-w1360-h1020-rw",
+      description: "A premier government medical institute in Lucknow offering specialized healthcare and research facilities for major medical disciplines.",
     },
     {
       name: "Medanta Hospital",
@@ -38,6 +42,8 @@ async function seed() {
       pincode: "226014",
       fullAddress: "Amar Shaheed Path, Lucknow, Uttar Pradesh",
       location: { type: "Point", coordinates: [81.0039, 26.8234] },
+      imageUrl: "https://lh3.googleusercontent.com/p/AF1QipMXdjh_ddksMov9Xm1UNcP0mR61G8taLaBVWbY=s1360-w1360-h1020-rw",
+      description: "Medanta Hospital is known for its multispecialty treatment, advanced technology, and patient-centered care in Lucknow.",
     },
     {
       name: "King George's Medical University (KGMU)",
@@ -46,6 +52,8 @@ async function seed() {
       pincode: "226003",
       fullAddress: "Chowk, Lucknow, Uttar Pradesh",
       location: { type: "Point", coordinates: [80.9132, 26.869] },
+      imageUrl: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxUhrcEzSYmJ36Fgrp4jAOEvyk7iCr73flitOI10uvhuHoaGp5laXYGzakUh17Qo98BkGYCPyTNttJpbRqEVcbaVZ6bAX8R9S7SdPi_9q-_vwfTeLuXJdmdoDCOsRohbBXngVye_g=s1360-w1360-h1020-rw",
+      description: "One of India’s oldest and most reputed medical universities, KGMU provides comprehensive education, research, and healthcare services.",
     },
     {
       name: "Drishti Eye Centre",
@@ -54,6 +62,8 @@ async function seed() {
       pincode: "226018",
       fullAddress: "Aliganj, Lucknow, Uttar Pradesh",
       location: { type: "Point", coordinates: [80.9428, 26.8871] },
+      imageUrl: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwlClLhGIfq_WhFd2Ve-1q6IKC_xqiFxQIWQkkOx5VMf0lCrs0_JAYypzw-KEX0tXvLxxZQsnMPKqZdgxBWfniwxJLC5ssvm8rL0XGN_DkMtegMtrNxY0MMtoGuKYc6jRntFc7XGQ=s1360-w1360-h1020-rw",
+      description: "A specialized center for ophthalmology in Lucknow, offering treatments for cataract, glaucoma, and other eye conditions.",
     },
     {
       name: "Apollo General and Internal Medicine Hospital",
@@ -62,6 +72,8 @@ async function seed() {
       pincode: "226016",
       fullAddress: "Indira Nagar, Lucknow, Uttar Pradesh",
       location: { type: "Point", coordinates: [80.9811, 26.8795] },
+      imageUrl: "https://drupal-cdn-hfaeddcdbng5hfbg.a01.azurefd.net/sites/default/files/styles/hospital_banner_image/public/2025-02/Apollo-Hospitals-Lucknow.webp?itok=rvSmQ8Iy",
+      description: "Apollo Hospital in Lucknow provides general and specialized healthcare services with modern diagnostic and surgical facilities.",
     },
     {
       name: "Smile Dental Clinic",
@@ -70,6 +82,8 @@ async function seed() {
       pincode: "226001",
       fullAddress: "Hazratganj, Lucknow, Uttar Pradesh",
       location: { type: "Point", coordinates: [80.9462, 26.8467] },
+      imageUrl: "https://plus.unsplash.com/premium_photo-1681996543579-b24cd01d4516?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      description: "Smile Dental Clinic offers comprehensive dental care including cosmetic dentistry, orthodontics, and root canal treatments.",
     },
 
     // ---------------------- GORAKHPUR ----------------------
@@ -80,6 +94,8 @@ async function seed() {
       pincode: "273013",
       fullAddress: "Medical College Road, Gorakhpur, Uttar Pradesh",
       location: { type: "Point", coordinates: [83.3771, 26.7606] },
+      imageUrl: "https://brdmc.ac.in/Images/2.jpg",
+      description: "A renowned government hospital and medical college in Gorakhpur known for affordable healthcare and medical training.",
     },
     {
       name: "City Hospital Gorakhpur",
@@ -88,6 +104,8 @@ async function seed() {
       pincode: "273001",
       fullAddress: "Civil Lines, Gorakhpur, Uttar Pradesh",
       location: { type: "Point", coordinates: [83.3666, 26.7636] },
+      imageUrl: "https://citysuperspecialityhospital.com/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-01-at-13.33.47_5b4225e2-1024x1024.jpg",
+      description: "City Hospital is a modern multispecialty hospital offering emergency, surgical, and outpatient services in Gorakhpur.",
     },
     {
       name: "Arogya Hospital",
@@ -96,6 +114,8 @@ async function seed() {
       pincode: "273015",
       fullAddress: "Transport Nagar, Gorakhpur, Uttar Pradesh",
       location: { type: "Point", coordinates: [83.3955, 26.7521] },
+      imageUrl: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=80",
+      description: "Arogya Hospital provides advanced medical care and wellness services with a focus on patient safety and comfort.",
     },
     {
       name: "Life Care Clinic",
@@ -104,6 +124,8 @@ async function seed() {
       pincode: "273008",
       fullAddress: "Basharatpur, Gorakhpur, Uttar Pradesh",
       location: { type: "Point", coordinates: [83.3982, 26.7633] },
+      imageUrl: "https://www.lifecarehospitalindia.com/images/about-hospital.png",
+      description: "A community-focused clinic providing general health checkups and minor treatments in Gorakhpur.",
     },
     {
       name: "Netra Jyoti Eye Hospital",
@@ -112,6 +134,8 @@ async function seed() {
       pincode: "273004",
       fullAddress: "Asuran Chowk, Gorakhpur, Uttar Pradesh",
       location: { type: "Point", coordinates: [83.371, 26.7785] },
+      imageUrl: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      description: "Specialized in advanced eye treatments including cataract and laser surgeries with expert ophthalmologists.",
     },
     {
       name: "Shanti General Hospital",
@@ -120,6 +144,8 @@ async function seed() {
       pincode: "273007",
       fullAddress: "Golghar, Gorakhpur, Uttar Pradesh",
       location: { type: "Point", coordinates: [83.3678, 26.7615] },
+      imageUrl: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      description: "A trusted healthcare center providing general medicine, surgery, and maternity services in Gorakhpur.",
     },
 
     // ---------------------- VARANASI ----------------------
@@ -130,6 +156,8 @@ async function seed() {
       pincode: "221002",
       fullAddress: "Lanka, Varanasi, Uttar Pradesh",
       location: { type: "Point", coordinates: [82.996, 25.2825] },
+      imageUrl: "https://heritagehospitals.com/assets_latest/homepage_services_img.png",
+      description: "Heritage Hospital in Varanasi is a leading multispecialty hospital known for its quality care and modern infrastructure.",
     },
     {
       name: "SS Hospital, BHU",
@@ -138,6 +166,8 @@ async function seed() {
       pincode: "221005",
       fullAddress: "Banaras Hindu University, Varanasi, Uttar Pradesh",
       location: { type: "Point", coordinates: [82.994, 25.2677] },
+      imageUrl: "https://www.bhu.ac.in/Images/images/hospitalbuild(2).jpg",
+      description: "Located inside Banaras Hindu University, SS Hospital provides comprehensive healthcare and medical research services.",
     },
     {
       name: "Anand Eye Hospital",
@@ -146,6 +176,8 @@ async function seed() {
       pincode: "221010",
       fullAddress: "Sigra, Varanasi, Uttar Pradesh",
       location: { type: "Point", coordinates: [82.987, 25.321] },
+      imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=1228&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      description: "Anand Eye Hospital offers advanced eye care treatments with modern surgical facilities in Varanasi.",
     },
     {
       name: "Sparsh Dental & Skin Clinic",
@@ -154,6 +186,8 @@ async function seed() {
       pincode: "221001",
       fullAddress: "Godowlia, Varanasi, Uttar Pradesh",
       location: { type: "Point", coordinates: [82.973, 25.316] },
+      imageUrl: "https://images.unsplash.com/photo-1516575901726-efcb7a9895a0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      description: "Sparsh Clinic provides expert care in dental and dermatological treatments in the heart of Varanasi.",
     },
   ]);
 

@@ -9,6 +9,8 @@ const HospitalSchema = new mongoose.Schema({
     type: { type: String, default: "Point" },
     coordinates: [Number], // [lng, lat]
   },
+  imageUrl: { type: String, default: "" },
+  description: { type: String, trim: true },
 });
 HospitalSchema.index({ location: "2dsphere" });
 module.exports = mongoose.model("Hospital", HospitalSchema);

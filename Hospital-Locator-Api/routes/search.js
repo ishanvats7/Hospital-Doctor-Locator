@@ -62,6 +62,7 @@ router.get("/", async (req, res) => {
           ...hospital,
           specializations,
           specializationCount: specializations.length,
+          imageUrl: hospital.imageUrl || "https://cdn-icons-png.flaticon.com/512/2966/2966327.png", // fallback 
         };
       })
     );
