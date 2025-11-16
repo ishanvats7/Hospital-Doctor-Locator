@@ -1,0 +1,71 @@
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+/* Slider Section */
+.home-slider {
+  width: 100%;
+}
+
+.home-slider img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 0; /* no rounded corners for full-width feel */
+}
+
+/* Info Section */
+.home-info {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  padding: 3rem 1rem;
+  background: white;
+  margin-top: -50px; /* slight overlap with slider */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.home-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #0077cc;
+}
+
+.home-info p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Start Searching Button */
+.start-search-btn {
+  font-size: 1.5rem;
+  padding: 15px 30px;
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.start-search-btn:hover {
+  background-color: #13803f;
+}
+
+/* Slick dots styling */
+.slick-dots li button:before {
+  color: #0077cc;
+  opacity: 0.7;
+}
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+}

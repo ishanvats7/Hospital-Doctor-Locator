@@ -186,7 +186,7 @@ body {
 /*  AI Assistant Box - Overlayed on Banner */
 .ai-box {
   position: absolute;
-  top: 150px;
+  top: 230px;
   right: 30px;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid #e0e0e0;
@@ -334,3 +334,13 @@ body {
 .book-btn:hover {
   background-color: #005fa3;
 }
+.book-btn {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+} 

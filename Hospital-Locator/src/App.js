@@ -5,17 +5,19 @@ import HospitalPage from "./pages/HospitalPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./pages/context/AuthContext";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
-      <Routes>
-        <Route path="/" element={<SearchPage />} />
-        <Route path="/hospital/:id" element={<HospitalPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomePage />} /> {/* Landing page */}
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/hospital/:id" element={<HospitalPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
       </AuthProvider>
     </Router>
   );

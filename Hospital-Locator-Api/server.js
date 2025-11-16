@@ -9,10 +9,12 @@ require("dotenv").config();
 const searchRoutes = require("./routes/search");
 const hospitalRoutes = require("./routes/hospital");
 const loginRegistrationRoutes = require("./routes/userAuth");
+const appointmentRoutes = require("./routes/appointment");
 
 //below line initializes express application
 const app = express();
 const aiRoutes = require("./routes/ai");
+
 
 /*  below line integrates the cors middleware, which handles Cross-Origin Resource Sharing (CORS) which means
 By default, browsers block requests from a web page on one "origin" (e.g., http://example.com:3000) to a resource on another "origin" (e.g., http://api.example.com:5000). The cors middleware adds the necessary HTTP headers (like Access-Control-Allow-Origin) to your Express.js server's responses, signaling to the browser that it's permissible for specific or all origins to access the server's resources.
@@ -30,8 +32,13 @@ app.use("/api/search", searchRoutes);
 app.use("/api/hospital", hospitalRoutes);
 app.use("/api/reviews", require("./routes/review"));
 app.use("/api/auth", loginRegistrationRoutes);
+
+app.use("/api/appointments", appointmentRoutes);
+app.use("/api/slots", require("./routes/slots"));
 // this is just a health check endpoint "/" means http://locahost:port/ will print below response if application runs properly
 app.use("/api/ai", require("./routes/ai"));
+
+
 
 app.get("/", (req, res) => res.send("Hospital Locator API is running"));
 

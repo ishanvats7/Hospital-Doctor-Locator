@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
+import BookingModal from "./BookingModal";
 
 const bannerImages = [
   {
@@ -55,6 +56,10 @@ function SearchPage() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+
+  // New state to store user's appointments
+  const [showModal, setShowModal] = useState(false);
+  const [selectedHospital, setSelectedHospital] = useState(null);
 
   // --- AI Assistant States ---
   const [symptoms, setSymptoms] = useState("");
@@ -314,12 +319,15 @@ function SearchPage() {
             <div> <a href={`/hospital/${item._id}`} className="search-link">
               <h3 className="hospital-name">{item.name}</h3>
             </a>
-              <button
-                className="book-btn"
-                onClick={() => navigate(`/hospital/${item._id}`)}
-              >
-                Book Now
-              </button>
+               <button
+              className="book-btn"
+              onClick={() => {
+                setSelectedHospital(item);
+                setShowModal(true);
+              }}
+            >
+              Book Now
+            </button>
 
               <p><strong>Type:</strong> {item.type || "hospital"}</p>
               <p><strong>Pincode:</strong> {item.pincode}</p>
@@ -338,7 +346,12 @@ function SearchPage() {
           <button onClick={() => fetchResults()}>Load More</button>
         )}
       </div>
-
+       {/* Booking Modal */}
+      <BookingModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        hospital={selectedHospital}
+      />
     </div>
   );
 }
